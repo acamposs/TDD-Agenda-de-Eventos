@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.AfterEach;
@@ -22,7 +21,6 @@ public class MainTest {
     @BeforeEach
     public void setUp() {
         System.setOut(new PrintStream(outputStreamCaptor));
-
     }
 
     @AfterEach
@@ -33,21 +31,25 @@ public class MainTest {
 
     @Test
     void testMensagemInicial() throws IOException {
-        final String input = "adicionar\nfinal dos 100m\n2024-07-24 10:00\n2024-07-24 11:00\n";
+        String input = "sair\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
+
         Main.main(null);
         assertEquals("Digite a ação (adicionar, remover, mostrar, sair):", outputStreamCaptor.toString().trim().split("\n")[0]);
     }
 
     @Test
     void testAdicionarComSucesso() throws IOException {
-        final String input = "adicionar\nfinal dos 100m\n2024-07-24 10:00\n2024-07-24 11:00\n";
+        String input = "adicionar\nfinal dos 100m\n2024-07-24 10:00\n2024-07-24 11:00\nsair\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        Main.main(null);
 
-        assertEquals("Digite o nome do evento:", outputStreamCaptor.toString().trim().split("\n")[1]);
-        assertEquals("Digite a hora de início do evento:", outputStreamCaptor.toString().trim().split("\n")[2]);
-        assertEquals("Digite a hora de fim do evento:", outputStreamCaptor.toString().trim().split("\n")[3]);
-        assertEquals("Evento adicionado com sucesso!", outputStreamCaptor.toString().trim().split("\n")[4]);
+        Main.main(null);
+        String[] outputLines = outputStreamCaptor.toString().trim().split("\n");
+
+        assertEquals("Digite a ação (adicionar, remover, mostrar, sair):\r", outputLines[0]);
+        assertEquals("Digite o nome do evento:\r", outputLines[1]);
+        assertEquals("Digite a hora de início do evento:\r", outputLines[2]);
+        assertEquals("Digite a hora de fim do evento:\r", outputLines[3]);
+        assertEquals("Evento adicionado com sucesso!", outputLines[4]);
     }
 }
