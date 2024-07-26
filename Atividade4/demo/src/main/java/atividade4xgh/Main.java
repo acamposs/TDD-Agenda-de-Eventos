@@ -55,6 +55,14 @@ public class Main {
             ) {
                 return false;
             }
+
+            if(
+                    novoEvento.getDataInicio().isBefore(eventoExistente.getDataInicio()) &&
+                    novoEvento.getDataFim().isAfter(eventoExistente.getDataInicio())
+            )
+            {
+                return false;
+            }
         }
         return true;
     }
