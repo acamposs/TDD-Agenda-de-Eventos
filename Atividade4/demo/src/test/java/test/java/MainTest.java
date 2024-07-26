@@ -63,7 +63,7 @@ public class MainTest {
         String[] outputLines = outputStreamCaptor.toString().trim().split("\n");
 
 
-        assertEquals("O evento tem um horário de conflito com outro evento!\r", outputLines[4]);
+        assertEquals("O evento tem um horário de conflito com outro evento!\r", outputLines[9]);
 
     }
 }

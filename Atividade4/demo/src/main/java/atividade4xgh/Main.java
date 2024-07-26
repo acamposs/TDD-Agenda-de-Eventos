@@ -43,7 +43,14 @@ public class Main {
     }
 
     private static boolean validaConflitoHorario(Evento evento) {
-        return false;
+        for (Evento eventoExistente : eventos) {
+            if(eventoExistente.getDataInicio().isEqual(evento.getDataInicio())
+                    && eventoExistente.getDataFim().isEqual(evento.getDataFim()))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
 
