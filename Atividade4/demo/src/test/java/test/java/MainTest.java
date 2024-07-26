@@ -22,42 +22,32 @@ public class MainTest {
     @BeforeEach
     public void setUp() {
         System.setOut(new PrintStream(outputStreamCaptor));
+
     }
 
     @AfterEach
     public void tearDown() {
         System.setOut(standardOut);
+        System.setIn(System.in);
     }
 
     @Test
     void testMensagemInicial() throws IOException {
+        final String input = "adicionar\nfinal dos 100m\n2024-07-24 10:00\n2024-07-24 11:00\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
         Main.main(null);
-
-        assertEquals("Digite a ação (adicionar, remover, mostrar, sair):", outputStreamCaptor.toString()
-                .trim().split("\n")[0]);
-
+        assertEquals("Digite a ação (adicionar, remover, mostrar, sair):", outputStreamCaptor.toString().trim().split("\n")[0]);
     }
 
     @Test
     void testAdicionarComSucesso() throws IOException {
+        final String input = "adicionar\nfinal dos 100m\n2024-07-24 10:00\n2024-07-24 11:00\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
         Main.main(null);
 
-        ByteArrayInputStream in = new ByteArrayInputStream("adicionar".getBytes());
-        System.setIn(in);
-
         assertEquals("Digite o nome do evento:", outputStreamCaptor.toString().trim().split("\n")[1]);
-
-        in = new ByteArrayInputStream("final dos 100m".getBytes());
-        System.setIn(in);
         assertEquals("Digite a hora de início do evento:", outputStreamCaptor.toString().trim().split("\n")[2]);
-
-        in = new ByteArrayInputStream("2024-07-24 10:00".getBytes());
-        System.setIn(in);
         assertEquals("Digite a hora de fim do evento:", outputStreamCaptor.toString().trim().split("\n")[3]);
-
-        in = new ByteArrayInputStream("2024-07-24 11:00".getBytes());
-        System.setIn(in);
-
         assertEquals("Evento adicionado com sucesso!", outputStreamCaptor.toString().trim().split("\n")[4]);
     }
 }
