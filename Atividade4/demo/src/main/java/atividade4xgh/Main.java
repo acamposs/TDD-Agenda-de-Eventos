@@ -11,11 +11,13 @@ public class Main {
     public static Scanner sc = new Scanner(System.in);
     
     public static void main(String[] args) throws IOException {
-        String acao = getAcao();
-        if (acao.equals("adicionar")) {
-            adicionar();
+        while (true) {
+            String acao = getAcao();
+            if (acao.equals("adicionar")) {
+                adicionar();
+            } else if(acao.equals("sair"))
+                break;
         }
-
     }
 
     private static String getAcao() {
@@ -30,8 +32,19 @@ public class Main {
         String dataInicio =sc.nextLine();
         System.out.println("Digite a hora de fim do evento:");
         String dataFim =sc.nextLine();
-        System.out.println("Evento adicionado com sucesso!");
         Evento evento = new Evento(nome, dataInicio, dataFim);
-        eventos.add(evento);
+
+        if(validaConflitoHorario(evento)) {
+            eventos.add(evento);
+            System.out.println("Evento adicionado com sucesso!");
+        } else {
+            System.out.println("O evento tem um horário de conflito com outro evento!");
+        }
     }
+
+    private static boolean validaConflitoHorario(Evento evento) {
+        return false;
+    }
+
+
 }

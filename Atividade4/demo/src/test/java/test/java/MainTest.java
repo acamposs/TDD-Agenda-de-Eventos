@@ -52,4 +52,18 @@ public class MainTest {
         assertEquals("Digite a hora de fim do evento:\r", outputLines[3]);
         assertEquals("Evento adicionado com sucesso!", outputLines[4]);
     }
+
+    @Test
+    void testConflitoHorario() throws IOException {
+        String input = "adicionar\nfinal dos 100m\n2024-07-24 10:00\n2024-07-24 11:00\n" +
+                "adicionar\nfinal dos 200m\n2024-07-24 10:00\n2024-07-24 11:00\nsair\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        Main.main(null);
+        String[] outputLines = outputStreamCaptor.toString().trim().split("\n");
+
+
+        assertEquals("O evento tem um horário de conflito com outro evento!\r", outputLines[4]);
+
+    }
 }
