@@ -42,11 +42,17 @@ public class Main {
         }
     }
 
-    private static boolean validaConflitoHorario(Evento evento) {
+    private static boolean validaConflitoHorario(Evento novoEvento) {
         for (Evento eventoExistente : eventos) {
-            if(eventoExistente.getDataInicio().isEqual(evento.getDataInicio())
-                    && eventoExistente.getDataFim().isEqual(evento.getDataFim()))
+            if(eventoExistente.getDataInicio().isEqual(novoEvento.getDataInicio())
+                    && eventoExistente.getDataFim().isEqual(novoEvento.getDataFim()))
             {
+                return false;
+            }
+            if(
+                    novoEvento.getDataInicio().isAfter(eventoExistente.getDataInicio()) &&
+                    novoEvento.getDataFim().isAfter(eventoExistente.getDataFim())
+            ) {
                 return false;
             }
         }
