@@ -24,6 +24,8 @@ public class Main{
                 adicionar(sc);
             } else if (acao.equals("remover")) {
                 remover(sc);
+            } else if (acao.equals("mostrar")){
+                mostrar(sc);
             }
             else if(acao.equals("sair"))
                 break;
@@ -53,6 +55,10 @@ public class Main{
         } else {
             System.out.println("O evento tem um horário de conflito com outro evento!");
         }
+    }
+
+    private void mostrar(Scanner sc) {
+        eventos.forEach(System.out::println);
     }
 
     private void remover(Scanner sc) {

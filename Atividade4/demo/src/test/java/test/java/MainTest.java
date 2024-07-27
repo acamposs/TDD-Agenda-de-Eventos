@@ -106,4 +106,17 @@ public class MainTest {
                     );
                 });
     }
+
+    @Test
+    void testMostraEventoComSucesso() throws Exception {
+        withTextFromSystemIn("adicionar", "Final dos 100m", "2024-07-24 10:00", "2024-07-24 11:00",
+                "mostrar", "sair")
+                .execute(() -> {
+                    final var main = new Main();
+                    main.teste();
+                    String[] outputLines = outputStreamCaptor.toString().trim().split("\n");
+
+                    assertEquals("Final dos 100m: 2024-07-24 10:00 a 2024-07-24 11:00\r", outputLines[6]);
+                });
+    }
 }
