@@ -43,8 +43,7 @@ public class Main{
     private void adicionar(Scanner sc) {
         System.out.println("Digite o nome do evento:");
         String nome = sc.nextLine();
-
-        System.out.println("Insira o nome do evento de forma que o nome não seja vazio.");
+        cadastraNome(nome, sc);
         System.out.println("Digite a hora de início do evento:");
         String dataInicio =sc.nextLine();
         System.out.println("Digite a hora de fim do evento:");
@@ -56,6 +55,13 @@ public class Main{
             System.out.println("Evento adicionado com sucesso!");
         } else {
             System.out.println("O evento tem um horário de conflito com outro evento!");
+        }
+    }
+
+    private void cadastraNome(String nome, Scanner sc) {
+        while (nome.isBlank()) {
+            System.out.println("Insira o nome do evento de forma que o nome não seja vazio.");
+            nome = sc.nextLine();
         }
     }
 

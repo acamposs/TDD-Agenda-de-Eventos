@@ -122,7 +122,7 @@ public class MainTest {
 
     @Test
     void testInserirEventoFalhaComNomeVazio() throws Exception {
-        withTextFromSystemIn("adicionar", "", "2024-07-24 10:00", "2024-07-24 11:00", "sair")
+        withTextFromSystemIn("adicionar", "", "Final dos 100m", "2024-07-24 10:00", "2024-07-24 11:00", "sair")
                 .execute(() -> {
                     final var main = new Main();
                     main.teste();
