@@ -20,19 +20,24 @@ public class Main{
     public void teste() {
          final var  sc = new Scanner(System.in);
 
+        label:
         while (true) {
             String acao = getAcao(sc);
-            if (acao.equals("adicionar")) {
-                adicionar(sc);
-            } else if (acao.equals("remover")) {
-                remover(sc);
-            } else if (acao.equals("mostrar")){
-                mostrar(sc);
-            }
-            else if(acao.equals("sair"))
-                break;
-            else {
-                System.out.println("Insira uma opção inválida (adicionar, remover, mostrar, sair).");
+            switch (acao) {
+                case "adicionar":
+                    adicionar(sc);
+                    break;
+                case "remover":
+                    remover(sc);
+                    break;
+                case "mostrar":
+                    mostrar(sc);
+                    break;
+                case "sair":
+                    break label;
+                default:
+                    System.out.println("Insira uma opção inválida (adicionar, remover, mostrar, sair).");
+                    break;
             }
         }
     }
