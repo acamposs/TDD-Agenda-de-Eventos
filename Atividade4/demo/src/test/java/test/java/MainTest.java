@@ -155,4 +155,15 @@ public class MainTest {
                             outputLines[3]);
                 });
     }
+
+    @Test void testaSair() throws Exception {
+        withTextFromSystemIn( "sair")
+                .execute(() -> {
+                    final var main = new Main();
+                    main.teste();
+                    String[] outputLines = outputStreamCaptor.toString().trim().split("\n");
+
+                    assertEquals(outputLines.length, 1);
+                });
+    }
 }
