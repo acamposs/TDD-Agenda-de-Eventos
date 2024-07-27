@@ -151,7 +151,7 @@ public class MainTest {
                     main.teste();
                     String[] outputLines = outputStreamCaptor.toString().trim().split("\n");
 
-                    assertEquals("Insira uma opção inválida (adicionar, remover, mostrar, sair).\r",
+                    assertEquals("Insira uma opção válida (adicionar, remover, mostrar, sair).\r",
                             outputLines[3]);
                 });
     }

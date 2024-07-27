@@ -19,7 +19,6 @@ public class Main{
 
     public void teste() {
          final var  sc = new Scanner(System.in);
-
         label:
         while (true) {
             String acao = getAcao(sc);
@@ -36,7 +35,7 @@ public class Main{
                 case "sair":
                     break label;
                 default:
-                    System.out.println("Insira uma opção inválida (adicionar, remover, mostrar, sair).");
+                    System.out.println("Insira uma opção válida (adicionar, remover, mostrar, sair).");
                     break;
             }
         }
