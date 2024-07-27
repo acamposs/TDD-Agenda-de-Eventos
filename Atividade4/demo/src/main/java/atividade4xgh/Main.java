@@ -6,28 +6,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class Main{
     public static List<Evento> eventos = new ArrayList<>();
-    public static Scanner sc = new Scanner(System.in);
-    
     public static void main(String[] args) throws IOException {
+        final var main = new Main();
+        main.teste();
+
+    }
+
+    public void teste() {
+         final var  sc = new Scanner(System.in);
+
         while (true) {
-            String acao = getAcao();
+            String acao = getAcao(sc);
             if (acao.equals("adicionar")) {
-                adicionar();
+                adicionar(sc);
             } else if(acao.equals("sair"))
                 break;
         }
     }
 
-    private static String getAcao() {
+    private String getAcao(Scanner sc) {
         System.out.println("Digite a ação (adicionar, remover, mostrar, sair):");
-        return sc.nextLine();
+        if(sc.hasNextLine()){
+            return sc.nextLine();
+        }
+        return null;
     }
 
-    private static void adicionar() {
+    private void adicionar(Scanner sc) {
+
         System.out.println("Digite o nome do evento:");
-        String nome =sc.nextLine();
+        String nome = sc.nextLine();
         System.out.println("Digite a hora de início do evento:");
         String dataInicio =sc.nextLine();
         System.out.println("Digite a hora de fim do evento:");
@@ -42,7 +52,7 @@ public class Main {
         }
     }
 
-    private static boolean validaConflitoHorario(Evento novoEvento) {
+    private boolean validaConflitoHorario(Evento novoEvento) {
         for (Evento eventoExistente : eventos) {
             if(eventoExistente.getDataInicio().isEqual(novoEvento.getDataInicio())
                     && eventoExistente.getDataFim().isEqual(novoEvento.getDataFim()))
