@@ -58,8 +58,11 @@ public class Main{
     private void remover(Scanner sc) {
         System.out.println("Digite o nome do evento para remover:");
         String nome = sc.nextLine();
-        System.out.println("Evento removido com sucesso.");
-
+        Optional<Evento> eventoOptional = eventos.stream().filter(e -> e.getNome().equals(nome)).findFirst();
+        if(eventoOptional.isPresent()) {
+            eventos.remove(eventoOptional.get());
+            System.out.println("Evento removido com sucesso.");
+        }
     }
 
     private boolean validaConflitoHorario(Evento novoEvento) {
