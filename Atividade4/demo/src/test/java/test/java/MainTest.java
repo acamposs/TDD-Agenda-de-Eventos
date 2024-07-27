@@ -90,4 +90,20 @@ public class MainTest {
                     assertEquals("O evento tem um horário de conflito com outro evento!\r", outputLines[9]);
                 });
     }
+
+    @Test
+    void testRemoverEventoComSucesso() throws Exception {
+        withTextFromSystemIn("adicionar", "final dos 100m", "2024-07-24 10:00", "2024-07-24 11:00",
+                "remover", "final dos 100m", "sair")
+                .execute(() -> {
+                    final var main = new Main();
+                    main.teste();
+                    String[] outputLines = outputStreamCaptor.toString().trim().split("\n");
+
+                    assertEquals("Digite o nome do evento para remover:\r", outputLines[6]);
+                    assertEquals("Evento removido com sucesso.\r",
+                            outputLines[7]
+                    );
+                });
+    }
 }

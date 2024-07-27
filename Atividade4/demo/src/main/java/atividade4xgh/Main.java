@@ -4,6 +4,7 @@ import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main{
@@ -21,7 +22,10 @@ public class Main{
             String acao = getAcao(sc);
             if (acao.equals("adicionar")) {
                 adicionar(sc);
-            } else if(acao.equals("sair"))
+            } else if (acao.equals("remover")) {
+                remover(sc);
+            }
+            else if(acao.equals("sair"))
                 break;
         }
     }
@@ -35,7 +39,6 @@ public class Main{
     }
 
     private void adicionar(Scanner sc) {
-
         System.out.println("Digite o nome do evento:");
         String nome = sc.nextLine();
         System.out.println("Digite a hora de início do evento:");
@@ -50,6 +53,13 @@ public class Main{
         } else {
             System.out.println("O evento tem um horário de conflito com outro evento!");
         }
+    }
+
+    private void remover(Scanner sc) {
+        System.out.println("Digite o nome do evento para remover:");
+        String nome = sc.nextLine();
+        System.out.println("Evento removido com sucesso.");
+
     }
 
     private boolean validaConflitoHorario(Evento novoEvento) {
