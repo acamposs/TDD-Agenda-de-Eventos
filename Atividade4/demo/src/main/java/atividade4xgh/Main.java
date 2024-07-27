@@ -110,6 +110,9 @@ public class Main{
         if(eventoOptional.isPresent()) {
             eventos.remove(eventoOptional.get());
             System.out.println("Evento removido com sucesso.");
+        } else {
+            System.out.println("Evento não encontrado.");
+
         }
     }
 

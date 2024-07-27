@@ -180,4 +180,17 @@ public class MainTest {
                             outputLines[1]);
                 });
     }
+
+    @Test
+    void testaRemoverComFalhaAoBuscarEventoInexistente() throws Exception {
+        withTextFromSystemIn("remover", "Final dos 100m", "sair")
+                .execute(() -> {
+                    final var main = new Main();
+                    main.teste();
+                    String[] outputLines = outputStreamCaptor.toString().trim().split("\n");
+
+                    assertEquals("Evento não encontrado.\r",
+                            outputLines[2]);
+                });
+    }
 }
