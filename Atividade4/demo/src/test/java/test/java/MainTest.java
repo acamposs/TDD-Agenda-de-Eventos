@@ -166,4 +166,18 @@ public class MainTest {
                     assertEquals(outputLines.length, 1);
                 });
     }
+
+
+    @Test
+    void testaQuandoNaoExistemEventos() throws Exception {
+        withTextFromSystemIn( "mostrar", "sair")
+                .execute(() -> {
+                    final var main = new Main();
+                    main.teste();
+                    String[] outputLines = outputStreamCaptor.toString().trim().split("\n");
+
+                    assertEquals("Nenhum evento agendado.\r",
+                            outputLines[1]);
+                });
+    }
 }

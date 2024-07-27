@@ -97,6 +97,9 @@ public class Main{
     }
 
     private void mostrar(Scanner sc) {
+        if(eventos.isEmpty()) {
+            System.out.println("Nenhum evento agendado.");
+        }
         eventos.forEach(System.out::println);
     }
 
