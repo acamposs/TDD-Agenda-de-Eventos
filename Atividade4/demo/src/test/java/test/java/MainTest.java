@@ -119,4 +119,17 @@ public class MainTest {
                     assertEquals("Final dos 100m: 2024-07-24 10:00 a 2024-07-24 11:00\r", outputLines[6]);
                 });
     }
+
+    @Test
+    void testInserirEventoFalhaComNomeVazio() throws Exception {
+        withTextFromSystemIn("adicionar", "", "2024-07-24 10:00", "2024-07-24 11:00", "sair")
+                .execute(() -> {
+                    final var main = new Main();
+                    main.teste();
+                    String[] outputLines = outputStreamCaptor.toString().trim().split("\n");
+
+                    assertEquals("Insira o nome do evento de forma que o nome não seja vazio.\r",
+                            outputLines[2]);
+                });
+    }
 }
