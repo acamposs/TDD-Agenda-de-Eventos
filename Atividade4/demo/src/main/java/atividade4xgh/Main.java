@@ -1,7 +1,9 @@
 package atividade4xgh;
 
-import java.io.Console;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,9 +47,9 @@ public class Main{
         String nome = sc.nextLine();
         cadastraNome(nome, sc);
         System.out.println("Digite a hora de início do evento:");
-        String dataInicio =sc.nextLine();
+        String dataInicio = cadastraData(sc);;
         System.out.println("Digite a hora de fim do evento:");
-        String dataFim =sc.nextLine();
+        String dataFim =  cadastraData(sc);
         Evento evento = new Evento(nome, dataInicio, dataFim);
 
         if(validaConflitoHorario(evento)) {
@@ -63,6 +65,28 @@ public class Main{
             System.out.println("Insira o nome do evento de forma que o nome não seja vazio.");
             nome = sc.nextLine();
         }
+    }
+
+    private String cadastraData(Scanner sc) {
+        String data = sc.nextLine();
+
+        while (!validaData(data)) {
+            System.out.println("Insira o a data evento de forma válida, no formato yyyy-MM-dd HH:mm.");
+            data = sc.nextLine();
+        }
+
+        return data;
+    }
+
+    private boolean validaData(String data) {
+        if(data.isBlank()) return false;
+        try {
+            LocalDateTime.parse(data, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+
+        return true;
     }
 
     private void mostrar(Scanner sc) {

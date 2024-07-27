@@ -2,13 +2,10 @@ package test.java;
 
 import static com.github.stefanbirkner.systemlambda.SystemLambda.withTextFromSystemIn;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Scanner;
 
 import org.junit.jupiter.api.*;
 
@@ -130,6 +127,19 @@ public class MainTest {
 
                     assertEquals("Insira o nome do evento de forma que o nome não seja vazio.\r",
                             outputLines[2]);
+                });
+    }
+
+    @Test
+    void testInserirEventoFalhaComDataInvalidaVazio() throws Exception {
+        withTextFromSystemIn("adicionar", "Final dos 100m", "2024-16-09 10:00", "2024-07-24 10:00" ,"2024-07-24 11:00", "sair")
+                .execute(() -> {
+                    final var main = new Main();
+                    main.teste();
+                    String[] outputLines = outputStreamCaptor.toString().trim().split("\n");
+
+                    assertEquals("Insira o a data evento de forma válida, no formato yyyy-MM-dd HH:mm.\r",
+                            outputLines[3]);
                 });
     }
 }
