@@ -142,4 +142,17 @@ public class MainTest {
                             outputLines[3]);
                 });
     }
+
+    @Test
+    void testInserirOpcaoInvalida() throws Exception {
+        withTextFromSystemIn("invalida", "", "sair")
+                .execute(() -> {
+                    final var main = new Main();
+                    main.teste();
+                    String[] outputLines = outputStreamCaptor.toString().trim().split("\n");
+
+                    assertEquals("Insira uma opção inválida (adicionar, remover, mostrar, sair).\r",
+                            outputLines[3]);
+                });
+    }
 }

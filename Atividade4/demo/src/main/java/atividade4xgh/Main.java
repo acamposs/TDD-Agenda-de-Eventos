@@ -31,6 +31,9 @@ public class Main{
             }
             else if(acao.equals("sair"))
                 break;
+            else {
+                System.out.println("Insira uma opção inválida (adicionar, remover, mostrar, sair).");
+            }
         }
     }
 
