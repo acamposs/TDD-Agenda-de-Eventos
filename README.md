@@ -79,29 +79,29 @@ java -jar path/para/junit5.jar --class-path bin --scan-class-path
 #### Adicionar um evento
 ```bash 
 Digite a ação (adicionar, remover, mostrar, sair):
-adicionar
+> adicionar
 Digite o nome do evento:
-Reunião de Equipe
+> Reunião de Equipe
 Digite a hora de início do evento (yyyy-MM-dd HH:mm):
-2024-10-12 09:00
+> 2024-10-12 09:00
 Digite a hora de fim do evento (yyyy-MM-dd HH:mm):
-2024-10-12 10:00
+> 2024-10-12 10:00
 Evento adicionado com sucesso!
  ```
 
 #### Remover um Evento
 ```bash 
 Digite a ação (adicionar, remover, mostrar, sair):
-remover
+> remover
 Digite o nome do evento:
-Reunião de Equipe
+> Reunião de Equipe
 Evento removido com sucesso.
  ```
 
 #### Mostrar Todos os Eventos
 ```bash 
 Digite a ação (adicionar, remover, mostrar, sair):
-mostrar
+> mostrar
 Reunião de Equipe: 2024-10-12 09:00 a 2024-10-12 10:00
  ```
 
